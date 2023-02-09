@@ -66,9 +66,9 @@ A `Makefile` file contain all the predefined commands that can be run. All the b
 
 ### Vanilla options:
 
-<embed src="src/python/outputs/vibrato_vanilla.pdf" type="application/pdf")
+<embed src="src/python/outputs/vibrato_vanilla.pdf" type="application/pdf">
 
 
 ### Digital options:
 
-<embed src="src/python/outputs/vibrato_digital.pdf" type="application/pdf")
+<embed src="src/python/outputs/vibrato_digital.pdf" type="application/pdf">
