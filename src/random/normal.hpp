@@ -3,16 +3,17 @@
 
 #include "distribution.hpp"
 
-
-template<typename T=double>
-class NormalDistribution final : public Distribution<T> {
+template <typename T = double>
+class NormalDistribution final : public Distribution<T>
+{
 private:
     T m_;
     T sigma_;
     bool available_ = false;
     T current_;
 
-    T rnorm_box_muller() {
+    T rnorm_box_muller()
+    {
         T u_1 = Distribution<T>::operator()();
         T u_2 = Distribution<T>::operator()();
         T R = sqrt(-2.0 * log(u_1));
@@ -23,30 +24,32 @@ private:
     }
 
 public:
-    NormalDistribution(T m=0, T sigma=1) : m_(m), sigma_(sigma) {};
+    NormalDistribution(T m = 0, T sigma = 1) : m_(m), sigma_(sigma){};
 
-    virtual~NormalDistribution() {};
+    virtual ~NormalDistribution(){};
 
-    T cdf(T x) const  {
+    T cdf(T x) const
+    {
         T numer = -(x - m_);
         T denom = sigma_ * sqrt(2);
         T ratio = numer / denom;
-        return erfc((double) ratio) / 2;
+        return erfc((double)ratio) / 2;
     }
 
-    T pdf(T x) const  {
+    T pdf(T x) const
+    {
         return exp(-0.5 * pow(((x - m_) / sigma_), 2)) / sqrt(2 * M_PI);
     }
 
-    virtual T operator()() override {
-        if (available_) {
+    virtual T operator()() override
+    {
+        if (available_)
+        {
             available_ = false;
             return current_;
         }
         return rnorm_box_muller();
     }
-
-
 };
 
-#endif  // NORMAL_HPP
+#endif // NORMAL_HPP

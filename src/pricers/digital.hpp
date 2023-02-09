@@ -7,16 +7,18 @@
 #include "../processes/gbm.hpp"
 #include "pricer.hpp"
 
-template<typename DType>
-class DigitalBS : public Pricer<DType> {
+template <typename DType>
+class DigitalBS : public Pricer<DType>
+{
 
 public:
     DigitalBS(std::shared_ptr<Option<DType>> option, std::shared_ptr<BlackScholesProcess<DType>> process)
-        :Pricer<DType>(option, process) {};
+        : Pricer<DType>(option, process){};
 
-    virtual~DigitalBS() = default;
+    virtual ~DigitalBS() = default;
 
-    virtual void compute() override {
+    virtual void compute() override
+    {
         auto process = static_pointer_cast<BlackScholesProcess<DType>>(this->process);
         DType r = process->rate;
         DType S = process->initialState.value;
@@ -33,12 +35,15 @@ public:
         DType otype = this->option->dtype();
         ctheta += discount * pd2 * (d1 / (2 * T) - r / (vol * sqrt(T)));
 
-        if (this->option->type == OptionType::Call) {
+        if (this->option->type == OptionType::Call)
+        {
             this->results->premium = discount * nd2;
             this->results->rho = crho;
             this->results->theta = -ctheta;
-        } else {
-            this->results->premium =  discount * (1 - nd2);
+        }
+        else
+        {
+            this->results->premium = discount * (1 - nd2);
             this->results->rho = -T * discount - crho;
             this->results->theta = ctheta - r * discount;
         }
@@ -55,5 +60,4 @@ private:
     NormalDistribution<DType> normal = NormalDistribution<DType>(0, 1);
 };
 
-
-#endif  // ANALYTIC_iDIGITAL_BS_HPP
+#endif // ANALYTIC_iDIGITAL_BS_HPP

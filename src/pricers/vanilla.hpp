@@ -8,16 +8,17 @@
 #include "../random/normal.hpp"
 #include "../processes/gbm.hpp"
 
-template<typename DType>
-class VanillaBS : public Pricer<DType> {
+template <typename DType>
+class VanillaBS : public Pricer<DType>
+{
 
 public:
-    VanillaBS(std::shared_ptr<Option<DType>> option, std::shared_ptr<BlackScholesProcess<DType>> process) :
-        Pricer<DType>(option, process) {};
+    VanillaBS(std::shared_ptr<Option<DType>> option, std::shared_ptr<BlackScholesProcess<DType>> process) : Pricer<DType>(option, process){};
 
-    virtual~VanillaBS() = default;
+    virtual ~VanillaBS() = default;
 
-    virtual void compute() override {
+    virtual void compute() override
+    {
         auto process = static_pointer_cast<BlackScholesProcess<DType>>(this->process);
 
         DType S = process->price();
@@ -32,12 +33,15 @@ public:
         DType nd2 = normal.cdf(d2);
         DType pd1 = normal.pdf(d1);
 
-        if (this->option->type == OptionType::Call) {
+        if (this->option->type == OptionType::Call)
+        {
             this->results->premium = S * nd1 - K * discount * nd2;
             this->results->delta = nd1;
             this->results->rho = K * T * discount * nd2;
             this->results->theta = S * pd1 * vol / (2 * sqrt(T)) + r * K * discount * nd2;
-        } else {
+        }
+        else
+        {
             this->results->premium = S * (nd1 - 1) + discount * K * (1 - nd2);
             this->results->delta = nd1 - 1;
             this->results->rho = K * T * discount * (nd2 - 1);
@@ -48,9 +52,9 @@ public:
         this->results->vanna = -pd1 * d2 / vol;
         this->results->volga = S * sqrt(T) * pd1 * d1 * d2 / (vol);
     }
+
 private:
     NormalDistribution<DType> normal = NormalDistribution<DType>(0, 1);
 };
 
-
-#endif  // ANALYTIC_BS_HPP
+#endif // ANALYTIC_BS_HPP

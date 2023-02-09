@@ -1,9 +1,9 @@
 
 #include <iostream>
 
-# include "../processes/gbm.hpp"
-# include "../processes/cir.hpp"
-# include "../processes/heston.hpp"
+#include "../processes/gbm.hpp"
+#include "../processes/cir.hpp"
+#include "../processes/heston.hpp"
 #include "../schemas/bsexact.hpp"
 #include "../schemas/cirexplicit1.hpp"
 #include "../schemas/cirexplicit2.hpp"
@@ -12,7 +12,8 @@
 
 using namespace std;
 
-int main() {
+int main()
+{
 	// ***************** Testing the CIR simulations ************************ //
 	// Parameters definition
 	double maturity = 10;
@@ -25,7 +26,6 @@ int main() {
 	// Create processes
 	auto cirProcess = std::make_shared<CIRProcess<double>>(v0, kappa, theta, vol);
 
-
 	auto CIRExp1 = std::make_shared<CIR1Schema<double>>(cirProcess);
 	auto CIRExp2 = std::make_shared<CIR2Schema<double>>(cirProcess);
 
@@ -33,7 +33,5 @@ int main() {
 	auto CIRExp1Path = CIRExp1->generatePath(nbSamples, maturity);
 	auto CIRExp2Path = CIRExp2->generatePath(nbSamples, maturity);
 
-
 	data2csv("src/python/datasets/CIR1", CIRExp1Path);
-
 }

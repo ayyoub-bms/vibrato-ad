@@ -8,13 +8,12 @@
 #include "../processes/gbm.hpp"
 #include "../instruments/vanilla.hpp"
 #include "../instruments/digital.hpp"
-
-
 #include "../pricers/digital.hpp"
 #include "../pricers/vanilla.hpp"
 using namespace std;
 
-int main(void) {
+int main(void)
+{
 
     // Computation of the premium and greeks analytical BS
 
@@ -40,14 +39,14 @@ int main(void) {
     cout << "*********************************" << endl;
     cout << "Pricing Vanilla option Analytic " << endl;
     cout << "*********************************" << endl;
-    Helper<double>::generateGrid(vopt, bs, be, 50.0 , 100, 1, "vanilla");
+    Helper<double>::generateGrid(vopt, bs, be, 50.0, 100, 1, "vanilla");
     cout << "*******************************" << endl;
     cout << "Pricing Digital option Analytic" << endl;
     cout << "*******************************" << endl;
-    Helper<double>::generateGrid(dopt, bs, de, 50.0 , 100, 1,  "digital");
+    Helper<double>::generateGrid(dopt, bs, de, 50.0, 100, 1, "digital");
     cout << "*************~END~*************" << endl;
 
     return 0;
 }
 
-#endif  // MAIN_CPP
+#endif // MAIN_CPP
