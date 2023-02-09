@@ -66,9 +66,9 @@ A `Makefile` file contain all the predefined commands that can be run. All the b
 
 ### Vanilla options:
 
-![Vanilla](src/python/outputs/vibrato_vanilla.pdf "Vanilla Call premium and greeks")
+<embed src="src/python/outputs/vibrato_vanilla.pdf" type="application/pdf")
 
 
 ### Digital options:
 
-![Digital](src/python/outputs/vibrato_digital.pdf "Digital Call premium and greeks")
+<embed src="src/python/outputs/vibrato_digital.pdf" type="application/pdf")
