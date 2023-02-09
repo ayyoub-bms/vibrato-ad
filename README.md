@@ -1,13 +1,5 @@
 # Sensitivity computation using Vibrato Monte Carlo and automatic differentiation
 
-## Objective
-
-1. Étudier la méthode numérique introduit dans [PPS15] (cf. aussi [Gil09]) pour calculer des sensibilités du premier
-   ordre (delta, vega) et du second ordre par la méthode de Vibrato Monte Carlo (qui consiste à régulariser les payoffs)
-   .
-2. Vérifier numériquement l’approche en insistant sur le coût numérique (la complexité). Il est possible d’appeler ou
-   d’adapter des librairies existantes de différentiation automatique (cf. le site http://www.autodiff.org)
-
 ## References: 
 
 See papers [PPS15], and [Gil09].
